@@ -1,2 +1,2 @@
-yarn format
-yarn lint
+bun run format
+bun run lint
