@@ -114,6 +114,7 @@ export const onCreateNewGroup = async (
 export const onGetGroupInfo = async (groupid: string) => {
     try {
         const user = await onAuthenticatedUser()
+
         const group = await client.group.findUnique({
             where: {
                 id: groupid,
