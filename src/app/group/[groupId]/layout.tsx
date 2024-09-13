@@ -1,6 +1,5 @@
 import { onAuthenticatedUser } from "@/actions/auth"
 import {
-    onGetAllGroupMembers,
     onGetGroupChannels,
     onGetGroupInfo,
     onGetGroupSubscriptions,
@@ -53,11 +52,8 @@ const GroupLayout = async ({ children, params }: Props) => {
         queryFn: () => onGetGroupSubscriptions(params.groupId),
     })
 
-    //member-chats
-    await query.prefetchQuery({
-        queryKey: ["member-chats"],
-        queryFn: () => onGetAllGroupMembers(params.groupId),
-    })
+    // WIP:member-chats
+
     return (
         <HydrationBoundary state={dehydrate(query)}>
             <div className="flex h-screen md:pt-5">
