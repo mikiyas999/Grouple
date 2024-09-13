@@ -13,6 +13,7 @@ import {
     QueryClient,
 } from "@tanstack/react-query"
 import { redirect } from "next/navigation"
+import MobileNav from "../_components/mobile-nav"
 import { Navbar } from "../_components/navbar"
 
 type Props = {
@@ -64,6 +65,7 @@ const GroupLayout = async ({ children, params }: Props) => {
                 <div className="md:ml-[300px] flex flex-col flex-1 bg-[#101011] md:rounded-tl-xl overflow-y-auto border-l-[1px] border-t-[1px] border-[#28282D]">
                     <Navbar groupid={params.groupId} userid={user.id} />
                     {children}
+                    <MobileNav groupid={params.groupId} />
                 </div>
             </div>
         </HydrationBoundary>
