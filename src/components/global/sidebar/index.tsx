@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button"
 import { useSideBar } from "@/hooks/navigation"
 import { CarotSort } from "@/icons"
 import { cn } from "@/lib/utils"
-import { Group, Link2, Plus } from "lucide-react"
+import { Group, Plus } from "lucide-react"
+import Link from "next/link"
 import { v4 } from "uuid"
 import { DropDown } from "../drop-down"
 import SideBarMenu from "./menu"
@@ -92,7 +93,7 @@ const SideBar = ({ groupid, userid, mobile }: Props) => {
                     {groups &&
                         groups.groups.length > 0 &&
                         groups.groups.map((item) => (
-                            <Link2
+                            <Link
                                 key={item.id}
                                 href={`/group/${item.id}/channel/${channels?.channels?.[0].id!}`}
                             >
@@ -103,7 +104,7 @@ const SideBar = ({ groupid, userid, mobile }: Props) => {
                                     <Group />
                                     {item.name}
                                 </Button>
-                            </Link2>
+                            </Link>
                         ))}
                 </DropDown>
             )}
