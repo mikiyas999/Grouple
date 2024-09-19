@@ -464,3 +464,63 @@ export const onGetPaginatedPosts = async (
         return { status: 400 }
     }
 }
+
+export const onJoinGroup = async (groupid: string) => {
+    try {
+        const user = await onAuthenticatedUser()
+        const member = await client.group.update({
+            where: {
+                id: groupid,
+            },
+            data: {
+                member: {
+                    create: {
+                        userId: user.id,
+                    },
+                },
+            },
+        })
+        if (member) {
+            return { status: 200 }
+        }
+    } catch (error) {
+        return { status: 404 }
+    }
+}
+export const onUpdateGroupGallery = async (
+    groupid: string,
+    content: string,
+) => {
+    try {
+        const mediaLimit = await client.group.findUnique({
+            where: {
+                id: groupid,
+            },
+            select: {
+                gallery: true,
+            },
+        })
+
+        if (mediaLimit && mediaLimit?.gallery.length < 6) {
+            await client.group.update({
+                where: {
+                    id: groupid,
+                },
+                data: {
+                    gallery: {
+                        push: content,
+                    },
+                },
+            })
+            revalidatePath(`/about/${groupid}`)
+            return { status: 200 }
+        }
+
+        return {
+            status: 400,
+            message: "Looks like your gallery has the maximum media allowed",
+        }
+    } catch (error) {
+        return { status: 400, message: "Looks like something went wrong" }
+    }
+}
