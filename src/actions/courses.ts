@@ -67,3 +67,168 @@ export const onGetGroupCourses = async (groupid: string) => {
         }
     }
 }
+
+export const onGetCourseModules = async (courseId: string) => {
+    try {
+        const modules = await client.module.findMany({
+            where: {
+                courseId,
+            },
+            orderBy: {
+                createdAt: "desc",
+            },
+            include: {
+                section: {
+                    orderBy: {
+                        createdAt: "asc",
+                    },
+                },
+            },
+        })
+
+        if (modules && modules.length > 0) {
+            return { status: 200, modules }
+        }
+
+        return {
+            status: 404,
+            message: "No modules found",
+        }
+    } catch (error) {
+        return {
+            status: 400,
+            message: "Oops! something went wrong",
+        }
+    }
+}
+
+export const onUpdateModule = async (
+    moduleId: string,
+    type: "NAME" | "DATA",
+    content: string,
+) => {
+    try {
+        if (type === "NAME") {
+            const title = await client.module.update({
+                where: {
+                    id: moduleId,
+                },
+                data: {
+                    title: content,
+                },
+            })
+
+            if (title) {
+                return { status: 200, message: "Name successfully updated" }
+            }
+
+            return {
+                status: 404,
+                message: "Module not found!",
+            }
+        }
+    } catch (error) {
+        return { status: 400, message: "Something went wrong" }
+    }
+}
+
+export const onUpdateSection = async (
+    sectionId: string,
+    type: "NAME" | "COMPLETE",
+    content: string,
+) => {
+    try {
+        if (type === "NAME") {
+            await client.section.update({
+                where: {
+                    id: sectionId,
+                },
+                data: {
+                    name: content,
+                },
+            })
+
+            return { status: 200, message: "Section successfully updated" }
+        }
+        if (type === "COMPLETE") {
+            await client.section.update({
+                where: {
+                    id: sectionId,
+                },
+                data: {
+                    complete: true,
+                },
+            })
+
+            return { status: 200, message: "Section successfully completed" }
+        }
+
+        return { status: 404, message: "Section not found" }
+    } catch (error) {
+        return { status: 400, message: "Something went wrong!" }
+    }
+}
+
+export const onCreateModuleSection = async (
+    moduleId: string,
+    sectionid: string,
+) => {
+    try {
+        const section = await client.module.update({
+            where: {
+                id: moduleId,
+            },
+            data: {
+                section: {
+                    create: {
+                        id: sectionid,
+                    },
+                },
+            },
+        })
+
+        if (section) {
+            return { status: 200, message: "New section created" }
+        }
+
+        return { status: 404, message: "Module not found" }
+    } catch (error) {
+        return { status: 400, message: "Oops! something went wrong" }
+    }
+}
+
+export const onCreateCourseModule = async (
+    courseId: string,
+    name: string,
+    moduleId: string,
+) => {
+    try {
+        const courseModule = await client.course.update({
+            where: {
+                id: courseId,
+            },
+            data: {
+                modules: {
+                    create: {
+                        title: name,
+                        id: moduleId,
+                    },
+                },
+            },
+        })
+
+        if (courseModule) {
+            return { status: 200, message: "Module successfully create" }
+        }
+
+        return {
+            status: 404,
+            message: "No courses found",
+        }
+    } catch (error) {
+        return {
+            status: 400,
+            message: "Oops! something went wrong",
+        }
+    }
+}
