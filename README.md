@@ -29,13 +29,23 @@ Features:
 📱 Create posts, like and comment on posts
 
 🎨Beautiful and improved custom UI
-⚙️Production ready project setup with husky, linters and more
+
+⚙️Production ready project setup with husky,linters and more
+
 📅 Calendar and events for groups
+
 💬 Real time chat for groups (if we have time)
+
 📄 Beautiful landing page for our app
+
 🗺️ Explore page for all groups
+
 🔍 Performant Search features
+
 🛝 Custom Infinite carousels with infinite scroll
+
 🔢Pagination with infinite scroll
+
 📊 Dashboard to see group metrics
+
 🟣And so much more….
