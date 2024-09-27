@@ -22,7 +22,7 @@ const GroupSideWidget = ({ groupid, light, userid }: Props) => {
             )}
         >
             <img
-                src={`https://ucarecdn.com/${group.thumbnail}/`}
+                src={`https://ucarecdn.com/${group?.thumbnail}/`}
                 alt="thumbnail"
                 className="w-full aspect-video"
             />
