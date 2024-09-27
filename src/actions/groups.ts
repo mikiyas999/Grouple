@@ -524,3 +524,120 @@ export const onUpdateGroupGallery = async (
         return { status: 400, message: "Looks like something went wrong" }
     }
 }
+
+export const onGetPostInfo = async (postid: string) => {
+    try {
+        const user = await onAuthenticatedUser()
+        const post = await client.post.findUnique({
+            where: {
+                id: postid,
+            },
+            include: {
+                channel: {
+                    select: {
+                        name: true,
+                    },
+                },
+                author: {
+                    select: {
+                        firstname: true,
+                        lastname: true,
+                        image: true,
+                    },
+                },
+                _count: {
+                    select: {
+                        likes: true,
+                        comments: true,
+                    },
+                },
+                likes: {
+                    where: {
+                        userId: user.id!,
+                    },
+                    select: {
+                        userId: true,
+                        id: true,
+                    },
+                },
+                comments: true,
+            },
+        })
+
+        if (post) return { status: 200, post }
+
+        return { status: 404, message: "No post found" }
+    } catch (error) {
+        return { status: 400, message: "Oops! something went wrong" }
+    }
+}
+
+export const onGetPostComments = async (postid: string) => {
+    try {
+        const comments = await client.comment.findMany({
+            where: {
+                postId: postid,
+                replied: false,
+            },
+            orderBy: {
+                createdAt: "desc",
+            },
+            include: {
+                user: true,
+                _count: {
+                    select: {
+                        reply: true,
+                    },
+                },
+            },
+        })
+
+        if (comments && comments.length > 0) {
+            return { status: 200, comments }
+        }
+    } catch (error) {
+        return { status: 400 }
+    }
+}
+
+export const onGetCommentReplies = async (commentid: string) => {
+    try {
+        const replies = await client.comment.findUnique({
+            where: {
+                id: commentid,
+            },
+            select: {
+                reply: {
+                    include: {
+                        user: true,
+                    },
+                },
+            },
+        })
+
+        if (replies && replies.reply.length > 0) {
+            return { status: 200, replies: replies.reply }
+        }
+
+        return { status: 404, message: "No replies found" }
+    } catch (error) {
+        return { status: 400, message: "Oops something went wrong" }
+    }
+}
+
+export const onGetAffiliateLink = async (groupid: string) => {
+    try {
+        const affiliate = await client.affiliate.findUnique({
+            where: {
+                groupId: groupid,
+            },
+            select: {
+                id: true,
+            },
+        })
+
+        return { status: 200, affiliate }
+    } catch (error) {
+        return { status: 400, message: "Oops! soomething went wrong" }
+    }
+}
