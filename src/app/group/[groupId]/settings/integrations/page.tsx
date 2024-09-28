@@ -8,7 +8,7 @@ import IntegrationTrigger from "./_components/integration-trigger"
 const IntegrationsPage = async ({
     params,
 }: {
-    params: { groupid: string }
+    params: { groupId: string }
 }) => {
     const payment = await onGetStripeIntegration()
     const connections = {
@@ -42,7 +42,7 @@ const IntegrationsPage = async ({
                                 descrioption={item.modalDescription}
                                 logo={item.logo}
                                 name={item.name}
-                                groupid={params.groupid}
+                                groupid={params.groupId}
                             />
                         </div>
                         <CardDescription>{item.description}</CardDescription>
