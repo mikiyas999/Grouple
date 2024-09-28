@@ -3,11 +3,11 @@ import { CopyButton } from "@/components/global/copy-button"
 import { Card, CardDescription, CardTitle } from "@/components/ui/card"
 
 type Props = {
-    params: { groupid: string }
+    params: { groupId: string }
 }
 
 const Affiliate = async ({ params }: Props) => {
-    const affiliate = await onGetAffiliateLink(params.groupid)
+    const affiliate = await onGetAffiliateLink(params.groupId)
     return (
         <div className="flex flex-col items-start p-5">
             <Card className="border-themeGray bg-[#1A1A1D] p-5">
