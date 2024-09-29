@@ -1,5 +1,3 @@
-
-
 Features:
 
 💰 Custom single line stripe component with animations
@@ -10,7 +8,7 @@ Features:
 
 ✍️ Custom Clerk Sign in & out
 
-🤝 Affiliate marketing systems for groups and for our app 
+🤝 Affiliate marketing systems for groups and for our app
 
 💥 Custom domain hosting inside the app using name servers to white label the groups
 
