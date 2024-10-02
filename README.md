@@ -32,7 +32,6 @@ Features:
 
 📅 Calendar and events for groups
 
-💬 Real time chat for groups (if we have time)
 
 📄 Beautiful landing page for our app
 
