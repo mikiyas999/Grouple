@@ -63,7 +63,7 @@ export const GROUP_PAGE_MENU: MenuProps[] = [
         id: 1,
         label: "Courses",
         icon: <Courses />,
-        path: "#pricing",
+        path: "courses",
         section: true,
     },
     {
