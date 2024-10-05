@@ -32,7 +32,6 @@ Features:
 
 📅 Calendar and events for groups
 
-
 📄 Beautiful landing page for our app
 
 🗺️ Explore page for all groups
