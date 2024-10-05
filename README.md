@@ -1,3 +1,13 @@
+<a name="readme-top"></a>
+
+# Create your Community with Grouple.
+
+![Track your income and expenses with Finance.](/.github/images/image1.png "Track your income and expenses with Finance.")
+
+
+<br />
+
+
 Features:
 
 💰 Custom single line stripe component with animations
