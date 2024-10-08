@@ -40,8 +40,6 @@ Features:
 
 ⚙️Production ready project setup with husky,linters and more
 
-📅 Calendar and events for groups
-
 📄 Beautiful landing page for our app
 
 🗺️ Explore page for all groups
@@ -51,7 +49,5 @@ Features:
 🛝 Custom Infinite carousels with infinite scroll
 
 🔢Pagination with infinite scroll
-
-📊 Dashboard to see group metrics
 
 🟣And so much more….
