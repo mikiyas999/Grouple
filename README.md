@@ -20,8 +20,6 @@ Features:
 
 🤝 Affiliate marketing systems for groups and for our app
 
-💥 Custom domain hosting inside the app using name servers to white label the groups
-
 🏝️ New pricing model for groups, 1 group for $99/m
 
 🎁 Free and Paid groups
